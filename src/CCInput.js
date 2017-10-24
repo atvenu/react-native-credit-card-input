@@ -98,8 +98,6 @@ export default class CCInput extends Component {
               ]
     };
 
-    console.log('aaaa: ', commonInputProps);
-
     return (
       <TouchableOpacity onPress={this.focus}
           activeOpacity={0.99}>
