@@ -77,28 +77,28 @@ export default class CCInput extends Component {
             validColor, invalidColor, placeholderColor, phoneProps, isTablet = true } = this.props;
 
     const commonInputProps = {
-      ref: "input",
-      keyboardType,
-      autoCapitalise: "words",
-      autoCorrect: false,
-      underlineColorAndroid: "transparent",
-      placeholderTextColor: placeholderColor,
-      placeholder,
-      value,
-      onFocus: this._onFocus,
-      onSubmitEditing: this.props.onSubmitEditing,
-      onKeyPress: this._handleKeyDown,
-      onChangeText: this._onChange,
-      style: [
-        s.baseInputStyle,
-        inputStyle,
-        ((validColor && status === "valid") ? { color: validColor } :
-        (invalidColor && status === "invalid") ? { color: invalidColor } :
-        {}),
-      ],
+        ref: "input",
+        keyboardType,
+        autoCapitalise: "words",
+        autoCorrect: false,
+        underlineColorAndroid: "transparent",
+        placeholderTextColor: placeholderColor,
+        placeholder,
+        value,
+        onFocus: this._onFocus,
+        onSubmitEditing: this.props.onSubmitEditing,
+        onKeyPress: this._handleKeyDown,
+        onChangeText: this._onChange,
+        style: [
+              s.baseInputStyle,
+              inputStyle,
+              ((validColor && status === "valid") ? { color: validColor } :
+              (invalidColor && status === "invalid") ? { color: invalidColor } :
+              {}),
+              ]
     };
 
-    console.log("aaaa: ", commonInputProps);
+    console.log('aaaa: ', commonInputProps);
 
     return (
       <TouchableOpacity onPress={this.focus}
@@ -109,10 +109,11 @@ export default class CCInput extends Component {
             <TextInput {...commonInputProps} />
           :
             <RCTTextInput {...commonInputProps}
-                leftButtonText={(phoneProps && phoneProps.leftButtonText) ? phoneProps.leftButtonText : ""}
-                onCancel={(phoneProps && phoneProps.leftButtonAction) ? phoneProps.leftButtonAction : null}
-                rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ""}
-                onDone={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null} />
+              leftButtonText={(phoneProps && phoneProps.leftButtonText) ? phoneProps.leftButtonText : ''}
+              onCancel={(phoneProps && phoneProps.leftButtonAction) ? phoneProps.leftButtonAction : null}
+              rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ''}
+              onDone={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
+            />
           }
         </View>
       </TouchableOpacity>
