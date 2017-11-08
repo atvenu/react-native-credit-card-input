@@ -43,6 +43,7 @@ const s = StyleSheet.create({
   last4: {
     flex: 1,
     justifyContent: "center",
+    marginLeft: -5
   },
   numberInput: {
     width: INFINITE_WIDTH,
@@ -56,7 +57,7 @@ const s = StyleSheet.create({
   },
   last4Input: {
     width: 60,
-    marginLeft: -5,
+    marginLeft: 0,
   },
   input: {
     height: 40,
