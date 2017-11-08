@@ -42,7 +42,7 @@ const s = StyleSheet.create({
   },
   last4: {
     flex: 1,
-    justifyContent: "flex-start",
+    justifyContent: "center",
   },
   numberInput: {
     width: INFINITE_WIDTH,
@@ -56,7 +56,7 @@ const s = StyleSheet.create({
   },
   last4Input: {
     width: 60,
-    marginLeft: 20,
+    marginLeft: 5,
   },
   input: {
     height: 40,
@@ -167,7 +167,7 @@ export default class LiteCreditCardInput extends Component {
             inputStyle={[s.input, inputStyle, {alignSelf: 'flex-end', flex: 0, width: 50}]}
           />
           <CCInput {...this._inputProps("cvc")}
-            containerStyle={[s.cvcInput, {backgroundColor: 'yellow'}]}
+            containerStyle={s.cvcInput}
             inputStyle={[s.input, inputStyle, {alignSelf: 'flex-end', flex: 0, width: 50}]}
           />
         </View>
