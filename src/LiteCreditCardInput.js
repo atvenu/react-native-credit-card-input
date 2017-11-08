@@ -42,7 +42,7 @@ const s = StyleSheet.create({
   },
   last4: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
   },
   numberInput: {
     width: INFINITE_WIDTH,
@@ -163,12 +163,12 @@ export default class LiteCreditCardInput extends Component {
             </View>
           </TouchableOpacity>
           <CCInput {...this._inputProps("expiry")}
-            containerStyle={[s.expiryInput, {backgroundColor: 'yellow'}]}
-            inputStyle={[s.input, inputStyle, {backgroundColor: 'blue', alignSelf: 'flex-end', flex: 0, width: 50}]}
+            containerStyle={s.expiryInput}
+            inputStyle={[s.input, inputStyle, {alignSelf: 'flex-end', flex: 0, width: 50}]}
           />
           <CCInput {...this._inputProps("cvc")}
             containerStyle={[s.cvcInput, {backgroundColor: 'yellow'}]}
-            inputStyle={[s.input, inputStyle, {backgroundColor: 'blue', alignSelf: 'flex-end', flex: 0, width: 50}]}
+            inputStyle={[s.input, inputStyle, {alignSelf: 'flex-end', flex: 0, width: 50}]}
           />
         </View>
       </View>
