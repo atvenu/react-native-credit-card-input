@@ -50,7 +50,7 @@ const s = StyleSheet.create({
     marginLeft: 3,
   },
   expiryInput: {
-    width: 75,
+    width: 70,
   },
   cvcInput: {
     width: 60,
@@ -165,7 +165,7 @@ export default class LiteCreditCardInput extends Component {
           </TouchableOpacity>
           <CCInput {...this._inputProps("expiry")}
             containerStyle={s.expiryInput}
-            inputStyle={[s.input, inputStyle, {alignSelf: 'flex-end', flex: 0, width: 50}]}
+            inputStyle={[s.input, inputStyle, {alignSelf: 'flex-end', flex: 0, width: 70}]}
           />
           <CCInput {...this._inputProps("cvc")}
             containerStyle={s.cvcInput}
