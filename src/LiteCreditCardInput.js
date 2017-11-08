@@ -164,11 +164,11 @@ export default class LiteCreditCardInput extends Component {
           </TouchableOpacity>
           <CCInput {...this._inputProps("expiry")}
             containerStyle={[s.expiryInput, {backgroundColor: 'yellow'}]}
-            inputStyle={[s.input, inputStyle, {backgroundColor: 'blue', alignSelf: 'flex-end', flex: 0, width: 40}]}
+            inputStyle={[s.input, inputStyle, {backgroundColor: 'blue', alignSelf: 'flex-end', flex: 0, width: 50}]}
           />
           <CCInput {...this._inputProps("cvc")}
             containerStyle={[s.cvcInput, {backgroundColor: 'yellow'}]}
-            inputStyle={[s.input, inputStyle, {backgroundColor: 'blue', alignSelf: 'flex-end', flex: 0, width: 40}]}
+            inputStyle={[s.input, inputStyle, {backgroundColor: 'blue', alignSelf: 'flex-end', flex: 0, width: 50}]}
           />
         </View>
       </View>
