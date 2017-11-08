@@ -56,7 +56,7 @@ const s = StyleSheet.create({
   },
   last4Input: {
     width: 60,
-    marginLeft: 5,
+    marginLeft: -5,
   },
   input: {
     height: 40,
