@@ -53,7 +53,6 @@ const s = StyleSheet.create({
   },
   cvcInput: {
     width: 60,
-    marginRight: -5,
   },
   last4Input: {
     width: 60,
