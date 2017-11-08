@@ -50,10 +50,10 @@ const s = StyleSheet.create({
   },
   expiryInput: {
     width: 80,
-    marginLeft: 5,
+    marginLeft: 10,
   },
   cvcInput: {
-    width: 80,
+    width: 60,
     marginRight: -5,
   },
   last4Input: {
