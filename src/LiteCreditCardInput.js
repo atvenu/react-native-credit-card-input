@@ -17,7 +17,6 @@ const INFINITE_WIDTH = 1000;
 const s = StyleSheet.create({
   container: {
     paddingLeft: 10,
-    paddingRight: 10,
     flexDirection: "row",
     alignItems: "center",
     overflow: "hidden",
@@ -25,6 +24,7 @@ const s = StyleSheet.create({
   icon: {
     width: 48,
     height: 40,
+    marginRight: 10,
     resizeMode: "contain",
   },
   expanded: {
