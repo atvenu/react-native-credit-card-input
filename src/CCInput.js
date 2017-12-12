@@ -1,8 +1,10 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import RCTTextInput from 'react-native-textinput-utils';
 
 import {
   View,
+  ViewPropTypes,
   Text,
   TextInput,
   TouchableOpacity,
@@ -25,7 +27,7 @@ export default class CCInput extends Component {
 
     status: PropTypes.oneOf(["valid", "invalid", "incomplete"]),
 
-    containerStyle: View.propTypes.style,
+    containerStyle: ViewPropTypes.style,
     inputStyle: Text.propTypes.style,
     labelStyle: Text.propTypes.style,
     validColor: PropTypes.string,
@@ -36,6 +38,7 @@ export default class CCInput extends Component {
     onChange: PropTypes.func,
     onBecomeEmpty: PropTypes.func,
     onBecomeValid: PropTypes.func,
+    additionalInputProps: PropTypes.shape(TextInput.propTypes),
   };
 
   static defaultProps = {
@@ -50,6 +53,7 @@ export default class CCInput extends Component {
     onChange: () => {},
     onBecomeEmpty: () => {},
     onBecomeValid: () => {},
+    additionalInputProps: {},
   };
 
   componentWillReceiveProps = newProps => {
@@ -74,10 +78,11 @@ export default class CCInput extends Component {
   render() {
     const { label, value, placeholder, status, keyboardType,
             containerStyle, inputStyle, labelStyle,
-            validColor, invalidColor, placeholderColor, phoneProps, isTablet = true } = this.props;
+            validColor, invalidColor, placeholderColor, phoneProps, isTablet = true, additionalInputProps } = this.props;
 
     const commonInputProps = {
         ref: "input",
+        ...additionalInputProps,
         keyboardType,
         autoCapitalise: "words",
         autoCorrect: false,
@@ -105,12 +110,12 @@ export default class CCInput extends Component {
           { !!label && <Text style={[labelStyle]}>{label}</Text>}
           {isTablet ?
             <TextInput {...commonInputProps} />
-          :
+            :
             <RCTTextInput {...commonInputProps}
-              leftButtonText={(phoneProps && phoneProps.leftButtonText) ? phoneProps.leftButtonText : ''}
-              onCancel={(phoneProps && phoneProps.leftButtonAction) ? phoneProps.leftButtonAction : null}
-              rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ''}
-              onDone={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
+                          leftButtonText={(phoneProps && phoneProps.leftButtonText) ? phoneProps.leftButtonText : ''}
+                          onCancel={(phoneProps && phoneProps.leftButtonAction) ? phoneProps.leftButtonAction : null}
+                          rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ''}
+                          onDone={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
             />
           }
         </View>

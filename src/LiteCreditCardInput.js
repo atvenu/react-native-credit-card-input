@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import {
   View,
   Text,
@@ -6,6 +7,7 @@ import {
   Image,
   LayoutAnimation,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 
 import Icons from "./Icons";
@@ -77,6 +79,8 @@ export default class LiteCreditCardInput extends Component {
     validColor: PropTypes.string,
     invalidColor: PropTypes.string,
     placeholderColor: PropTypes.string,
+
+    additionalInputsProps: PropTypes.objectOf(PropTypes.shape(TextInput.propTypes)),
   };
 
   static defaultProps = {
@@ -88,6 +92,7 @@ export default class LiteCreditCardInput extends Component {
     validColor: "",
     invalidColor: "red",
     placeholderColor: "gray",
+    additionalInputsProps: {},
   };
 
   componentDidMount = () => this._focus(this.props.focused);
@@ -109,7 +114,8 @@ export default class LiteCreditCardInput extends Component {
     const {
       inputStyle, validColor, invalidColor, placeholderColor,
       placeholders, values, status, handleFocusOnBackspace,
-      onFocus, onChange, onBecomeEmpty, onBecomeValid, isTablet, phoneProps
+      onFocus, onChange, onBecomeEmpty, onBecomeValid, isTablet, phoneProps,
+      additionalInputsProps
     } = this.props;
 
     return {
@@ -123,6 +129,7 @@ export default class LiteCreditCardInput extends Component {
       handleFocusOnBackspace,
       isTablet, phoneProps,
       onFocus, onChange, onBecomeEmpty, onBecomeValid,
+      additionalInputProps: additionalInputsProps[field],
     };
   };
 

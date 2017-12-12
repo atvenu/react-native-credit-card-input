@@ -1,11 +1,14 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactNative, {
   NativeModules,
   View,
+  ViewPropTypes,
   Text,
   StyleSheet,
   ScrollView,
   Dimensions,
+  TextInput,
 } from "react-native";
 
 import CreditCard from "./CardView";
@@ -32,11 +35,11 @@ const s = StyleSheet.create({
 
 const CVC_INPUT_WIDTH = 70;
 const EXPIRY_INPUT_WIDTH = CVC_INPUT_WIDTH;
-const CARD_NUMBER_INPUT_WIDTH_OFFSET = 40;
-const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width - EXPIRY_INPUT_WIDTH - CARD_NUMBER_INPUT_WIDTH_OFFSET;
+const CARD_NUMBER_INPUT_WIDTH_OFFSET = 45;
+const CARD_NUMBER_INPUT_WIDTH = Dimensions.get("window").width - EXPIRY_INPUT_WIDTH - 3*CARD_NUMBER_INPUT_WIDTH_OFFSET;
 const NAME_INPUT_WIDTH = CARD_NUMBER_INPUT_WIDTH;
 const PREVIOUS_FIELD_OFFSET = 40;
-const POSTAL_CODE_INPUT_WIDTH = 120;
+const POSTAL_CODE_INPUT_WIDTH = 100;
 
 /* eslint react/prop-types: 0 */ // https://github.com/yannickcr/eslint-plugin-react/issues/106
 export default class CreditCardInput extends Component {
@@ -47,7 +50,7 @@ export default class CreditCardInput extends Component {
 
     labelStyle: Text.propTypes.style,
     inputStyle: Text.propTypes.style,
-    inputContainerStyle: View.propTypes.style,
+    inputContainerStyle: ViewPropTypes.style,
 
     validColor: PropTypes.string,
     invalidColor: PropTypes.string,
@@ -60,6 +63,8 @@ export default class CreditCardInput extends Component {
     cardBrandIcons: PropTypes.object,
 
     allowScroll: PropTypes.bool,
+
+    additionalInputsProps: PropTypes.objectOf(PropTypes.shape(TextInput.propTypes)),
   };
 
   static defaultProps = {
@@ -86,6 +91,7 @@ export default class CreditCardInput extends Component {
     invalidColor: "red",
     placeholderColor: "gray",
     allowScroll: false,
+    additionalInputsProps: {},
   };
 
   componentDidMount = () => this._focus(this.props.focused);
@@ -113,6 +119,7 @@ export default class CreditCardInput extends Component {
       inputStyle, labelStyle, validColor, invalidColor, placeholderColor,
       placeholders, labels, values, status,
       onFocus, onChange, onBecomeEmpty, onBecomeValid,
+      additionalInputsProps,
     } = this.props;
 
     return {
@@ -127,6 +134,8 @@ export default class CreditCardInput extends Component {
       status: status[field],
 
       onFocus, onChange, onBecomeEmpty, onBecomeValid,
+
+      additionalInputProps: additionalInputsProps[field],
     };
   };
 
@@ -153,7 +162,7 @@ export default class CreditCardInput extends Component {
             cvc={cvc} />
         <ScrollView ref="Form"
             horizontal
-            keyboardShouldPersistTaps
+            keyboardShouldPersistTaps="always"
             scrollEnabled={allowScroll}
             showsHorizontalScrollIndicator={false}
             style={s.form}>
@@ -164,13 +173,13 @@ export default class CreditCardInput extends Component {
           { requiresCVC &&
             <CCInput {...this._inputProps("cvc")}
                 containerStyle={[s.inputContainer, inputContainerStyle, { width: CVC_INPUT_WIDTH }]} /> }
+          { requiresPostalCode &&
+            <CCInput {...this._inputProps("postalCode")}
+                containerStyle={[s.inputContainer, inputContainerStyle, { width: POSTAL_CODE_INPUT_WIDTH }]} /> }
           { requiresName &&
             <CCInput {...this._inputProps("name")}
                 keyboardType="default"
                 containerStyle={[s.inputContainer, inputContainerStyle, { width: NAME_INPUT_WIDTH }]} /> }
-          { requiresPostalCode &&
-            <CCInput {...this._inputProps("postalCode")}
-                containerStyle={[s.inputContainer, inputContainerStyle, { width: POSTAL_CODE_INPUT_WIDTH }]} /> }
         </ScrollView>
       </View>
     );
