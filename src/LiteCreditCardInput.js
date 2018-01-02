@@ -5,7 +5,6 @@ import {
   Text,
   StyleSheet,
   Image,
-  LayoutAnimation,
   TouchableOpacity,
   TextInput,
 } from "react-native";
@@ -107,7 +106,6 @@ export default class LiteCreditCardInput extends Component {
   _focus = field => {
     if (!field) return;
     this.refs[field].focus();
-    LayoutAnimation.easeInEaseOut();
   };
 
   _inputProps = field => {
