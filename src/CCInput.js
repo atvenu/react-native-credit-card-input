@@ -112,10 +112,10 @@ export default class CCInput extends Component {
             <TextInput {...commonInputProps} />
             :
             <RCTTextInput {...commonInputProps}
-                          leftButtonText={(phoneProps && phoneProps.leftButtonText) ? phoneProps.leftButtonText : ''}
-                          onCancel={(phoneProps && phoneProps.leftButtonAction) ? phoneProps.leftButtonAction : null}
+                          leftButton1Text={(phoneProps && phoneProps.leftButton1Text) ? phoneProps.leftButton1Text : ''}
+                          leftButton1Function={(phoneProps && phoneProps.leftButton1Action) ? phoneProps.leftButton1Action : null}
                           rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ''}
-                          onDone={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
+                          rightButtonFunction={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
             />
           }
         </View>
