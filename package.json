@@ -39,8 +39,7 @@
     "lodash.compact": "^3.0.1",
     "lodash.every": "^4.6.0",
     "lodash.pick": "^4.4.0",
-    "lodash.values": "^4.3.0",
-    "react-native-textinput-utils": "git://github.com/atvenu/react-native-textinput-utils.git#ef7e243aa91f2bfc2353e5db472f5755c7b26193"
+    "lodash.values": "^4.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^5.0.0",

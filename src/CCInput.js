@@ -1,21 +1,29 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import RCTTextInput from 'react-native-textinput-utils';
-
 import {
   View,
   ViewPropTypes,
   Text,
   TextInput,
   TouchableOpacity,
-  StyleSheet,
+  StyleSheet, InputAccessoryView, TouchableHighlight,
 } from "react-native";
 
 const s = StyleSheet.create({
   baseInputStyle: {
     color: "black",
   },
+  accessoryViewContainer: {
+    backgroundColor: "#f4f4f4",
+    height: 50,
+    paddingHorizontal: 6,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between"
+  }
 });
+
+const ccInputAccessoryViewID = 'credit-card-input-CCInput';
 
 export default class CCInput extends Component {
   static propTypes = {
@@ -75,6 +83,20 @@ export default class CCInput extends Component {
     }
   };
 
+  renderInputAccessoryView(phoneProps) {
+
+    return <InputAccessoryView nativeID={ccInputAccessoryViewID}>
+      <View style={s.accessoryViewContainer}>
+        {phoneProps.leftButton1Action && <TouchableHighlight style={{paddingHorizontal: 10}} onPress={phoneProps.leftButton1Action}>
+          <Text>{phoneProps.leftButton1Text || ''}</Text>
+        </TouchableHighlight>}
+        {phoneProps.rightButtonAction && <TouchableHighlight style={{paddingHorizontal: 10}} onPress={phoneProps.rightButtonAction}>
+          <Text>{phoneProps.rightButtonText || ''}</Text>
+        </TouchableHighlight>}
+      </View>
+    </InputAccessoryView>
+  }
+
   render() {
     const { label, value, placeholder, status, keyboardType,
             containerStyle, inputStyle, labelStyle,
@@ -82,6 +104,7 @@ export default class CCInput extends Component {
 
     const commonInputProps = {
         ref: "input",
+        inputAccessoryViewID: ccInputAccessoryViewID,
         ...additionalInputProps,
         keyboardType,
         autoCapitalise: "words",
@@ -108,16 +131,8 @@ export default class CCInput extends Component {
           activeOpacity={0.99}>
         <View style={[containerStyle]}>
           { !!label && <Text style={[labelStyle]}>{label}</Text>}
-          {isTablet ?
-            <TextInput {...commonInputProps} />
-            :
-            <RCTTextInput {...commonInputProps}
-                          leftButton1Text={(phoneProps && phoneProps.leftButton1Text) ? phoneProps.leftButton1Text : ''}
-                          leftButton1Function={(phoneProps && phoneProps.leftButton1Action) ? phoneProps.leftButton1Action : null}
-                          rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ''}
-                          rightButtonFunction={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
-            />
-          }
+          <TextInput {...commonInputProps} />
+          {!isTablet && phoneProps && this.renderInputAccessoryView(phoneProps)}
         </View>
       </TouchableOpacity>
     );
