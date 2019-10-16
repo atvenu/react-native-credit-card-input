@@ -87,10 +87,10 @@ export default class CCInput extends Component {
 
     return <InputAccessoryView nativeID={ccInputAccessoryViewID}>
       <View style={s.accessoryViewContainer}>
-        {phoneProps.leftButton1Action && <TouchableHighlight style={{paddingHorizontal: 10}} onPress={phoneProps.leftButton1Action}>
+        {phoneProps.leftButton1Action && <TouchableHighlight style={{paddingHorizontal: 10}} underlayColor={'transparent'} onPress={phoneProps.leftButton1Action}>
           <Text>{phoneProps.leftButton1Text || ''}</Text>
         </TouchableHighlight>}
-        {phoneProps.rightButtonAction && <TouchableHighlight style={{paddingHorizontal: 10}} onPress={phoneProps.rightButtonAction}>
+        {phoneProps.rightButtonAction && <TouchableHighlight style={{paddingHorizontal: 10}} underlayColor={'transparent'} onPress={phoneProps.rightButtonAction}>
           <Text>{phoneProps.rightButtonText || ''}</Text>
         </TouchableHighlight>}
       </View>
